@@ -1,5 +1,6 @@
 # VeterinariaCampus
 Aca esta un listado de los endpoints de las consultas, para hacer las consultas, el usuario debe tener el rol administrator y estar autenticado:\
+###Consulta 1
 -Crear un consulta que permita visualizar los veterinarios cuya especialidad sea Cirujano vascular:\
 -Endpoint: api/Veterinario/GetVeterinariosEspecialidad/{especialidad}\
 2.Listar los medicamentos que pertenezcan a el laboratorio Genfar:\
