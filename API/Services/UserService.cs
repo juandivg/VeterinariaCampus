@@ -155,6 +155,7 @@ namespace API.Services;
         {
             dataUserDto.IsAuthenticated = false;
             dataUserDto.Message = $"User does not exist with username {model.Username}.";
+            dataUserDto.RefreshToken="";
             return dataUserDto;
         }
 
@@ -191,6 +192,7 @@ namespace API.Services;
         }
         dataUserDto.IsAuthenticated = false;
         dataUserDto.Message = $"Credenciales incorrectas para el usuario {user.Username}.";
+        dataUserDto.RefreshToken="";
         return dataUserDto;
         }
      private JwtSecurityToken CreateJwtToken(Usuario usuario)
@@ -209,6 +211,7 @@ namespace API.Services;
                                 new Claim("uid", usuario.Id.ToString())
                         }
         .Union(roleClaims);
+        Console.WriteLine(_jwt.Key +"hola");
         var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
         var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
         var jwtSecurityToken = new JwtSecurityToken(

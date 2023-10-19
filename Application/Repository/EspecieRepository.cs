@@ -34,7 +34,9 @@ public class EspecieRepository : GenericRepository<Especie>, IEspecieRepository
                 new Mascota{
                     Id=p.Id,
                     Nombre=p.Nombre,
-                    FechaNacimiento=p.FechaNacimiento
+                    FechaNacimiento=p.FechaNacimiento,
+                    IdPropetiariofk=p.IdPropetiariofk,
+                    IdRazafk=p.IdRazafk
                 }
                 ).ToList()
             }

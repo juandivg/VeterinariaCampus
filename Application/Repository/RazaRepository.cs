@@ -22,7 +22,7 @@ public class RazaRepository : GenericRepository<Raza>, IRazaRepository
 
     public async Task<IEnumerable<Raza>> GetRazasxMascotas()
     {
-        return await _context.Razas.Include(p=>p.Mascotas).ToListAsync();
+        return await _context.Razas.Include(p=>p.Mascotas).Where(p=>p.Mascotas.Count()>0).ToListAsync();
     }
         public override async Task<(int totalRegistros, IEnumerable<Raza> registros)> GetAllAsync(int pageIndex, int pageSize, string search)
     {
