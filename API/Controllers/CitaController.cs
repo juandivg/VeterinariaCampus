@@ -7,6 +7,7 @@ using API.Helpers;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -26,6 +27,7 @@ public class CitaController : BaseApiController
     [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<CitaDto>>>Get1()
     {
         var citas=await _unitOfWork.Citas.GetAllAsync();
@@ -44,6 +46,7 @@ public class CitaController : BaseApiController
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<Cita>> Post(CitaDto CitaDto)
     {
         var Cita = _mapper.Map<Cita>(CitaDto);
@@ -56,13 +59,11 @@ public class CitaController : BaseApiController
         CitaDto.Id = Cita.Id;
         return CreatedAtAction(nameof(Post), new { id = CitaDto.Id }, CitaDto);
     }
-    /// <summary>
-    /// Modificar la informacion de un proveedor, el id debe ser preciso
-    /// </summary>
-    /// <returns></returns>
+  
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<Cita>> Put(int id, [FromBody] CitaDto CitaDto)
     {
         var Cita = _mapper.Map<Cita>(CitaDto);
@@ -74,13 +75,11 @@ public class CitaController : BaseApiController
         await _unitOfWork.SaveAsync();
         return Cita;
     }
-    /// <summary>
-    /// Eliminar una paciente por ID
-    /// </summary>
-    /// <returns></returns>
+
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> Delete(int id)
     {
         var Cita = await _unitOfWork.Citas.GetByIdAsync(id);
@@ -95,6 +94,7 @@ public class CitaController : BaseApiController
     [HttpGet("GeMascotasCita/{motivo}&{fechainicio}&{fechafinal}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<CitaxMascotaDto>>>Get2(string motivo, DateTime fechainicio, DateTime fechafinal)
     {
         var citas=await _unitOfWork.Citas.GetMascotasCita(motivo, fechainicio, fechafinal);
@@ -104,6 +104,7 @@ public class CitaController : BaseApiController
     [HttpGet("GeMascotasVeterinario/{veterinario}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<CitaxMascotaDto>>>Get3(string veterinario)
     {
         var citas=await _unitOfWork.Citas.GetMascotasVeterinario(veterinario);

@@ -17,5 +17,8 @@ namespace Domain.Interfaces;
         ICitaRepository Citas {get;}
         IEspecieRepository Especies {get;}
         IRazaRepository Razas {get;}
+        ITratamientoRepository Tratamientos {get;}
+        ILaboratorioRepository Laboratorios {get;}
+        ITipoMovimientoRepository TipoMovimientos {get;}
         Task<int> SaveAsync();
     }

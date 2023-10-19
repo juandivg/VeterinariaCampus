@@ -17,17 +17,9 @@ public class EspecieRepository : GenericRepository<Especie>, IEspecieRepository
         _context=context;
     }
 
-    public async Task<IEnumerable<Especie>> GetEspeciesxMascotas()
-    {
-        return await _context.Especies.Include(p=>p.Razas.Where(p=>p.Mascotas.Count()>0)).ThenInclude(p=>p.Mascotas).Where(p=>p.Razas.Where(p=>p.Mascotas.Count()>0).Count()>0).ToListAsync();
-    }
-    
-    public override async Task<IEnumerable<Especie>> GetAllAsync()
-    {
-        return await _context.Especies.ToListAsync();
-    }
 
-    public async Task<IEnumerable<SpeciesxPets>> GetEspeciexMascotas2()
+
+    public async Task<IEnumerable<SpeciesxPets>> GetEspeciexMascotas()
     {
         return await(
             from es in _context.Especies

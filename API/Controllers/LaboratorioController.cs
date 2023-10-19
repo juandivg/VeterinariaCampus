@@ -13,12 +13,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
-    public class RazaController:BaseApiController
+    public class LaboratorioController: BaseApiController
     {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-
-    public RazaController(IUnitOfWork unitOfWork, IMapper mapper)
+    public LaboratorioController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         this._unitOfWork = unitOfWork;
         _mapper = mapper;
@@ -28,52 +27,52 @@ namespace API.Controllers;
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<IEnumerable<RazaDto>>>Get1()
+    public async Task<ActionResult<IEnumerable<LaboratorioDto>>>Get1()
     {
-        var razas=await _unitOfWork.Razas.GetAllAsync();
-        return _mapper.Map<List<RazaDto>>(razas);
+        var Laboratorios=await _unitOfWork.Laboratorios.GetAllAsync();
+        return _mapper.Map<List<LaboratorioDto>>(Laboratorios);
     }
-       [HttpGet]
+    [HttpGet]
     [MapToApiVersion("1.1")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Pager<RazaDto>>> Getpag([FromQuery] Params RazaParams)
+    public async Task<ActionResult<Pager<LaboratorioDto>>> Getpag([FromQuery] Params LaboratorioParams)
     {
-        var Raza = await _unitOfWork.Razas.GetAllAsync(RazaParams.PageIndex,RazaParams.PageSize,RazaParams.Search);
-        var lstRazasDto = _mapper.Map<List<RazaDto>>(Raza.registros);
-        return new Pager<RazaDto>(lstRazasDto,Raza.totalRegistros,RazaParams.PageIndex,RazaParams.PageSize,RazaParams.Search);
+        var Laboratorio = await _unitOfWork.Laboratorios.GetAllAsync(LaboratorioParams.PageIndex,LaboratorioParams.PageSize,LaboratorioParams.Search);
+        var lstLaboratoriosDto = _mapper.Map<List<LaboratorioDto>>(Laboratorio.registros);
+        return new Pager<LaboratorioDto>(lstLaboratoriosDto,Laboratorio.totalRegistros,LaboratorioParams.PageIndex,LaboratorioParams.PageSize,LaboratorioParams.Search);
     }
-    [HttpPost]
+            [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<Raza>> Post(RazaDto razaDto)
+    public async Task<ActionResult<Laboratorio>> Post(LaboratorioDto LaboratorioDto)
     {
-        var raza = _mapper.Map<Raza>(razaDto);
-        this._unitOfWork.Razas.Add(raza);
+        var Laboratorio = _mapper.Map<Laboratorio>(LaboratorioDto);
+        this._unitOfWork.Laboratorios.Add(Laboratorio);
         await _unitOfWork.SaveAsync();
-        if (raza == null)
+        if (Laboratorio == null)
         {
             return BadRequest();
         }
-        razaDto.Id = raza.Id;
-        return CreatedAtAction(nameof(Post), new { id = razaDto.Id }, razaDto);
+        LaboratorioDto.Id = Laboratorio.Id;
+        return CreatedAtAction(nameof(Post), new { id = LaboratorioDto.Id }, LaboratorioDto);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<Raza>> Put(int id, [FromBody] RazaDto RazaDto)
+    public async Task<ActionResult<Laboratorio>> Put(int id, [FromBody] LaboratorioDto LaboratorioDto)
     {
-        var raza = _mapper.Map<Raza>(RazaDto);
-        if (raza == null)
+        var Laboratorio = _mapper.Map<Laboratorio>(LaboratorioDto);
+        if (Laboratorio == null)
         {
             return NotFound();
         }
-        _unitOfWork.Razas.Update(raza);
+        _unitOfWork.Laboratorios.Update(Laboratorio);
         await _unitOfWork.SaveAsync();
-        return raza;
+        return Laboratorio;
     }
  
     [HttpDelete("{id}")]
@@ -82,23 +81,13 @@ namespace API.Controllers;
     [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> Delete(int id)
     {
-        var raza = await _unitOfWork.Razas.GetByIdAsync(id);
-        if (raza == null)
+        var Laboratorio = await _unitOfWork.Laboratorios.GetByIdAsync(id);
+        if (Laboratorio == null)
         {
             return NotFound();
         }
-        _unitOfWork.Razas.Remove(raza);
+        _unitOfWork.Laboratorios.Remove(Laboratorio);
         await _unitOfWork.SaveAsync();
         return NoContent();
-    }
-    [HttpGet("GetRazasxMascotas")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [Authorize(Roles = "Administrator")]
-    public async Task<ActionResult<IEnumerable<RazaxMascotasDto>>>Get2()
-    {
-        var razas=await _unitOfWork.Razas.GetRazasxMascotas();
-        return _mapper.Map<List<RazaxMascotasDto>>(razas);
-
     }
     }

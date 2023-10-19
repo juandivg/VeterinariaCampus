@@ -7,6 +7,7 @@ using API.Helpers;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -25,6 +26,7 @@ public class PropietarioController : BaseApiController
     [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<PropietarioDto>>>Get1()
     {
         var propietarios=await _unitOfWork.Propietarios.GetAllAsync();
@@ -43,6 +45,7 @@ public class PropietarioController : BaseApiController
             [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<Propietario>> Post(PropietarioDto PropietarioDto)
     {
         var Propietario = _mapper.Map<Propietario>(PropietarioDto);
@@ -55,13 +58,11 @@ public class PropietarioController : BaseApiController
         PropietarioDto.Id = Propietario.Id;
         return CreatedAtAction(nameof(Post), new { id = PropietarioDto.Id }, PropietarioDto);
     }
-    /// <summary>
-    /// Modificar la informacion de un proveedor, el id debe ser preciso
-    /// </summary>
-    /// <returns></returns>
+
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<Propietario>> Put(int id, [FromBody] PropietarioDto PropietarioDto)
     {
         var Propietario = _mapper.Map<Propietario>(PropietarioDto);
@@ -73,13 +74,11 @@ public class PropietarioController : BaseApiController
         await _unitOfWork.SaveAsync();
         return Propietario;
     }
-    /// <summary>
-    /// Eliminar una paciente por ID
-    /// </summary>
-    /// <returns></returns>
+
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> Delete(int id)
     {
         var Propietario = await _unitOfWork.Propietarios.GetByIdAsync(id);
@@ -94,6 +93,7 @@ public class PropietarioController : BaseApiController
     [HttpGet("GetPropietarioxMascotas")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<PropietarioxMascotasDto>>>Get2()
     {
         var propietarios=await _unitOfWork.Propietarios.GetPropietarioxMascotas();
@@ -102,6 +102,7 @@ public class PropietarioController : BaseApiController
     [HttpGet("GetPropietarioxMascotasRaza/{raza}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<PropietarioxMascotasDto>>>Get3(string raza)
     {
         var propietarios=await _unitOfWork.Propietarios.GetPropietarioxMascotasRaza(raza);

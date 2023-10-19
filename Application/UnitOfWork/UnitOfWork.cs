@@ -22,6 +22,9 @@ namespace Application.UnitOfWork;
         private ICitaRepository _citas;
         private IEspecieRepository _especies;
         private IRazaRepository _razas;
+        private ILaboratorioRepository _laboratorios;
+        private ITratamientoRepository _tratamientos;
+        private ITipoMovimientoRepository _tipomovimientos;
 
         public UnitOfWork(VeterinariaCampusContext context)
         {
@@ -135,6 +138,36 @@ namespace Application.UnitOfWork;
                     _razas=new RazaRepository(_context);
                 }
                 return _razas;
+            }
+        }
+        public ILaboratorioRepository Laboratorios
+        {
+            get{
+                if(_laboratorios==null)
+                {
+                    _laboratorios=new LaboratorioRepository(_context);
+                }
+                return _laboratorios;
+            }
+        }
+        public ITratamientoRepository Tratamientos
+        {
+            get{
+                if(_tratamientos==null)
+                {
+                    _tratamientos=new TratamientoRepository(_context);
+                }
+                return _tratamientos;
+            }
+        }
+        public ITipoMovimientoRepository TipoMovimientos
+        {
+            get{
+                if(_tipomovimientos==null)
+                {
+                    _tipomovimientos=new TipoMovimientoRepository(_context);
+                }
+                return _tipomovimientos;
             }
         }
     

@@ -7,6 +7,7 @@ using API.Helpers;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -26,6 +27,7 @@ public class MedicamentoController : BaseApiController
     [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>>Get1()
     {
         var medicamentos=await _unitOfWork.Medicamentos.GetAllAsync();
@@ -44,6 +46,7 @@ public class MedicamentoController : BaseApiController
         [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<Medicamento>> Post(MedicamentoDto MedicamentoDto)
     {
         var Medicamento = _mapper.Map<Medicamento>(MedicamentoDto);
@@ -56,13 +59,11 @@ public class MedicamentoController : BaseApiController
         MedicamentoDto.Id = Medicamento.Id;
         return CreatedAtAction(nameof(Post), new { id = MedicamentoDto.Id }, MedicamentoDto);
     }
-    /// <summary>
-    /// Modificar la informacion de un proveedor, el id debe ser preciso
-    /// </summary>
-    /// <returns></returns>
+
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<Medicamento>> Put(int id, [FromBody] MedicamentoDto MedicamentoDto)
     {
         var Medicamento = _mapper.Map<Medicamento>(MedicamentoDto);
@@ -74,13 +75,11 @@ public class MedicamentoController : BaseApiController
         await _unitOfWork.SaveAsync();
         return Medicamento;
     }
-    /// <summary>
-    /// Eliminar una paciente por ID
-    /// </summary>
-    /// <returns></returns>
+ 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult> Delete(int id)
     {
         var Medicamento = await _unitOfWork.Medicamentos.GetByIdAsync(id);
@@ -95,6 +94,7 @@ public class MedicamentoController : BaseApiController
     [HttpGet("GetMedicamentosLaboratorio/{laboratorio}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>>Get2(string laboratorio)
     {
         var medicamentos=await _unitOfWork.Medicamentos.GetMedicamentosLaboratorio(laboratorio);
@@ -104,6 +104,7 @@ public class MedicamentoController : BaseApiController
     [HttpGet("GetMedicamentosxPrecio/{precio}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Authorize(Roles = "Administrator")]
     public async Task<ActionResult<IEnumerable<MedicamentoDto>>>Get3(decimal precio)
     {
         var medicamentos=await _unitOfWork.Medicamentos.GetMedicamentosxPrecio(precio);

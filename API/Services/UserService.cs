@@ -228,7 +228,7 @@ namespace API.Services;
             return new RefreshToken
             {
                 Token = Convert.ToBase64String(randomNumber),
-                Expires = DateTime.UtcNow.AddMinutes(3),
+                Expires = DateTime.UtcNow.AddMinutes(5),
                 Created = DateTime.UtcNow
             };
         }
