@@ -11,12 +11,12 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 -Listar los medicamentos que pertenezcan a el laboratorio Genfar
 -Endpoint: api/Medicamento/GetMedicamentosLaboratorio/{laboratorio}
 
-## Consulta 3
+### Consulta 3
 
 -Mostrar las mascotas que se encuentren registradas cuya especie sea felina: 
 -Endpoint: api/Mascota/GetMascotasEspecie/{especie}
 
-## Consulta 4
+### Consulta 4
 
 -Listar los propietarios y sus mascotas
 -Endpoint: api/Propietario/GetPropietarioxMascotas
@@ -36,7 +36,7 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 -Listar todas las mascotas agrupadas por especie
 -Endpoint: api/Especie/GetEspeciexMascotas
 
-## Consulta 8
+### Consulta 8
 
 -Listar todos los movimientos de medicamentos y el valor total de cada movimiento
 -Endpoint: api/Movimiento/GetMovimientos
