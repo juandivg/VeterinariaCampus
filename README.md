@@ -3,10 +3,16 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 
 ## Consulta 1
 
--Crear un consulta que permita visualizar los veterinarios cuya especialidad sea Cirujano vascular:\
--Endpoint: api/Veterinario/GetVeterinariosEspecialidad/{especialidad}\
-2.Listar los medicamentos que pertenezcan a el laboratorio Genfar:\
-Endpoint: api/Medicamento/GetMedicamentosLaboratorio/{laboratorio}\
+-Crear un consulta que permita visualizar los veterinarios cuya especialidad sea Cirujano vascular:
+-Endpoint: api/Veterinario/GetVeterinariosEspecialidad/{especialidad}
+
+## Consulta 2
+
+-Listar los medicamentos que pertenezcan a el laboratorio Genfar:
+-Endpoint: api/Medicamento/GetMedicamentosLaboratorio/{laboratorio}
+
+## Consulta 3
+
 3.Mostrar las mascotas que se encuentren registradas cuya especie sea felina:\
 Endpoint: api/Mascota/GetMascotasEspecie/{especie}\
 4.Listar los propietarios y sus mascotas.\
