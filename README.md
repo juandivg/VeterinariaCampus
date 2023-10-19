@@ -3,8 +3,8 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 
 ### Consulta 1
 
-*Crear un consulta que permita visualizar los veterinarios cuya especialidad sea Cirujano vascular
-*Endpoint: api/Veterinario/GetVeterinariosEspecialidad/{especialidad}
+- Crear un consulta que permita visualizar los veterinarios cuya especialidad sea Cirujano vascular
+- Endpoint: api/Veterinario/GetVeterinariosEspecialidad/{especialidad}
 
 ### Consulta 2
 
