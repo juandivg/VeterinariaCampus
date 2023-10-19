@@ -13,8 +13,8 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 
 ### Consulta 3
 
--Mostrar las mascotas que se encuentren registradas cuya especie sea felina: 
--Endpoint: api/Mascota/GetMascotasEspecie/{especie}
+- Mostrar las mascotas que se encuentren registradas cuya especie sea felina: 
+- Endpoint: api/Mascota/GetMascotasEspecie/{especie}
 
 ### Consulta 4
 
