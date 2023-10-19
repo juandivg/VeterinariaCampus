@@ -6,7 +6,7 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 *Endpoint: api/Medicamento/GetMedicamentosLaboratorio/{laboratorio}
 *Mostrar las mascotas que se encuentren registradas cuya especie sea felina:
 *Endpoint: api/Mascota/GetMascotasEspecie/{especie}
-4.Listar los propietarios y sus mascotas.
+*Listar los propietarios y sus mascotas.
 *Endpoint: api/Propietario/GetPropietarioxMascotas
 5.Listar los medicamentos que tenga un precio de venta mayor a 50000
 *Endpoint: api/Medicamento/GetMedicamentosxPrecio/{precio}
