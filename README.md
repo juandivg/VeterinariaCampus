@@ -29,7 +29,7 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 ### Consulta 6
 
 - Listar las mascotas que fueron atendidas por motivo de vacunacion en el primer trimestre del 2023
-- Endpoint: api/Cita/GetMascotasCita/{motivo}&{fechainicio}&{fechafinal}
+- Endpoint: api/Cita/GeMascotasCita/{motivo}&{fechainicio}&{fechafinal}
 
 ### Consulta 7
 
@@ -44,7 +44,7 @@ Aca esta un listado de los endpoints de las consultas, para hacer las consultas,
 ### Consulta 9
 
 - Listar las mascotas que fueron atendidas por un determinado veterinario
-- Endpoint: api/Cita/GetMascotasVeterinario/{veterinario}
+- Endpoint: api/Cita/GeMascotasVeterinario/{veterinario}
 
 ### Consulta 10
 
