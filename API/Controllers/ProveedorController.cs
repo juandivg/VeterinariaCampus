@@ -91,7 +91,7 @@ namespace API.Controllers;
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
-    [HttpGet("GetProveedoresxMedicamento/{medicamento}")]
+    [HttpGet("GetProveedoresxMedicamento")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]

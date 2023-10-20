@@ -91,7 +91,7 @@ public class MedicamentoController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
-    [HttpGet("GetMedicamentosLaboratorio/{laboratorio}")]
+    [HttpGet("GetMedicamentosLaboratorio")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]
@@ -101,7 +101,7 @@ public class MedicamentoController : BaseApiController
         return _mapper.Map<List<MedicamentoDto>>(medicamentos);
 
     }
-    [HttpGet("GetMedicamentosxPrecio/{precio}")]
+    [HttpGet("GetMedicamentosxPrecio")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]

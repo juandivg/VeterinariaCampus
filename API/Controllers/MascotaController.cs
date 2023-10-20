@@ -91,7 +91,7 @@ public class MascotaController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
-    [HttpGet("GetMascotasEspecie/{especie}")]
+    [HttpGet("GetMascotasEspecie")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]

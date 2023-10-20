@@ -92,7 +92,7 @@ public class VeterinarioController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
-    [HttpGet("GetVeterinariosEspecialidad/{especialidad}")]
+    [HttpGet("GetVeterinariosEspecialidad")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]

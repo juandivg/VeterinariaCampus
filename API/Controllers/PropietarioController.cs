@@ -99,7 +99,7 @@ public class PropietarioController : BaseApiController
         var propietarios=await _unitOfWork.Propietarios.GetPropietarioxMascotas();
         return _mapper.Map<List<PropietarioxMascotasDto>>(propietarios);
     }
-    [HttpGet("GetPropietarioxMascotasRaza/{raza}")]
+    [HttpGet("GetPropietarioxMascotasRaza")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]

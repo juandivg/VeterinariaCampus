@@ -91,7 +91,7 @@ public class CitaController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
-    [HttpGet("GeMascotasCita/{motivo}&{fechainicio}&{fechafinal}")]
+    [HttpGet("GeMascotasCita")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]
@@ -101,7 +101,7 @@ public class CitaController : BaseApiController
         return _mapper.Map<List<CitaxMascotaDto>>(citas);
 
     }
-    [HttpGet("GeMascotasVeterinario/{veterinario}")]
+    [HttpGet("GeMascotasVeterinario")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [Authorize(Roles = "Administrator")]
